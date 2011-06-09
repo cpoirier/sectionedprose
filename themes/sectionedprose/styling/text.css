@@ -1,0 +1,73 @@
+/*
+	960 Grid System ~ Text CSS.
+	Learn more ~ http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+
+html
+{
+  font: normal normal 400 1em/1.5 Cambria, Georgia, "Times New Roman", Times, serif;
+  color: #323232;
+}
+
+h1, h2, h3
+{
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+hr 
+{
+	border: 0 #ccc solid;
+	border-top-width: 1px;
+	clear: both;
+	height: 0;
+}
+
+h1 { font-size: 1.5em;   line-height: 2.25em;   }
+h2 { font-size: 1.375em; line-height: 2.0625em; }
+h3 { font-size: 1.25em;  line-height: 1.875em;  }
+h4 { font-size: 1.125em; line-height: 1.6875em; }
+h5 { font-size: 1em;     line-height: 1.5em;    }
+h6 { font-size: 1em;     line-height: 1.5em;    }
+
+img { font-size: 1em; }
+
+
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+
+ol {
+	list-style: decimal;
+}
+
+ul {
+	list-style: disc;
+}
+
+li {
+	margin-left: 30px;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset,
+figure {
+	margin-bottom: 20px;
+}

@@ -1,0 +1,319 @@
+/*
+Theme Name:  Sectioned Prose
+Description: A theme for text- and narrative-based, category-sectioned sites.  Based loosely on Damien Flux's SubtleFlux theme (http://thestateofflux.com).
+Version:     1.0.0
+Author:      Chris Poirier
+Author URI:  http://courage-my-friend.org
+
+========================================================================
+- 960 grid layout with 16 columns and extra padding on the outside edges
+- designed for text and narratives
+
+*/
+
+@import url("styling/reset.css"); 
+
+html, img
+{
+  font: normal normal 400 1em/1.5em Cambria, Georgia, "Times New Roman", Times, serif;
+}
+
+code
+{
+  font: normal normal 400 0.8125em/1.5em DejaVuSansMono, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace; 
+  display: block;
+  margin: 1.5em 0;
+  padding: 1.5em;
+  background: #EEE;
+  overflow: auto;
+  overflow-y: hidden;
+}
+
+
+
+section h1 { font-size: 1.5em;   margin: 1em 0;      }
+section h2 { font-size: 1.375em; margin: 1.0909em 0; }
+section h3, article h1 { font-size: 1.25em;  margin: 1.2em 0;    }
+section h4, article h2 { font-size: 1.125em; margin: 1.3333em 0; }
+section h5, section h6, article h3, article h4, article h5, article h6
+{ 
+  font-size: 1em;
+  margin: 1.5em 0;
+  font-weight: bold;
+}
+article h2, article h3 { text-decoration: underline; }
+
+article > header h1 { font-size: 1.5em;   margin: 0; }
+article > header h2 { font-size: 1.375em; margin: 0; }
+article > header { margin: 0 0 1.5em 0; }
+article > header:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; .zoom: 1; .display: block; }
+
+
+h1, h2, h3
+{
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+html
+{
+  background: white;
+  color: #323232; 
+}
+
+body
+{
+  height: auto;
+}
+
+hr 
+{
+  border: 0 #ccc solid;
+  border-top-width: 0.0625em;
+  clear: both;
+  height: 0;
+}
+
+section hr { margin: 3em 0 2.9375em 0; border-top: 0.0625em solid #E2DDDE; height: 0; }
+
+a         { color: #886353; text-decoration: none; }
+a:visited { color: #755243; }
+a:hover   { color: #38221b; }
+
+ul { list-style-type: none; margin: 0; padding: 0; text-indent: 0; }
+ul li { margin: 0; padding: 0; }
+
+.clear { clear: both; }
+img.right { float: right; margin: 0 0 1em 1em; }
+
+strong { font-weight: normal; font-style: italic; }
+strong strong { font-weight: bold; }
+
+blockquote
+{
+  margin-left: 2.125em;
+  border-left: 0.125em solid #E2DDDE;
+  padding-left: 0.25em;
+  margin-left: 0;
+  padding-left: 2.345em;
+}
+
+ul.inline, ul.inline li, 
+ol.inline, ol.inline li 
+{
+  display: inline;
+}
+
+
+
+/* === Sizing ================================================ 
+
+       margins:  5px = 0.3125em
+  first column: 30px = 1.875em
+    additional: 40px = 2.5em
+
+============================================================== */
+
+/*body:hover .container { background: url(images/24_col.gif) center top repeat-y #fff; } */
+.container { width: 60em; margin: 0 auto; clear: both; }
+
+body { width: 60em; margin: 0 auto; padding: 1.5em 2.5em; background: white; }
+
+#main { padding: 4.5em 0; }
+#content, #sidebar { display: inline; float: left; margin-left: 0.3125em; margin-right: 0.3125em; }
+
+/* Without the border: */
+#content { width: 34.375em; /* 16 */ padding: 0 5.3125em 0 2.5em; /* 2 + margin */ }
+#sidebar { width: 14.375em; /* 6  */ }
+article { padding: 2.25em 2.5em; } 
+
+/* With the border: */
+#content { width: 39.375em; /* 16 */ padding: 0 5em 0 0; /* 1 suffix */ }
+#sidebar { width: 14.375em; /* 6  */ }
+article { padding: 4.4375em 4.9375em; border: 0.0625em solid #E2DDDE; }
+
+/* Without border or indent */
+#content { width: 34.375em; /* 16 */ padding: 0 7.5em 0 0; }
+#sidebar { width: 14.375em; /* 6  */ }
+article { padding: 1.5em 0 1.5em 2.5em; border: 0; }
+
+
+
+/* === Header and Footer ===================================== */
+
+#header hgroup { margin: 1.5em 0 0.5em 0; }
+#header hgroup:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; .zoom: 1; .display: block; }
+
+#header h1 { float: left; line-height: 1; font-size: 2.25em; color: #1F1F1F; margin: 0; padding: 0; }
+#header h2 { float: right; font-size: 1em; color: #525252; margin: 0; padding: 0; font-style: italic; }
+#header h2:before { content: "\2013"; color: white; font-size: 2.25em; line-height: 1; margin: 0; padding: 0; } 
+
+#header h1 a:link, 
+#header h1 a:active, 
+#header h1 a:visited, 
+#header h1 a:hover    
+{ 
+  color: #1F1F1F; 
+}
+
+#header img { border-top: 0.125em solid #333; width: 60em; max-height: 20em; }
+#header img.thin { border-top: 0.0625em solid #333; }
+#header img.none { border-top-width: 0; }
+
+#footer { border-top: 0.0625em solid #eee; }
+#footer > p { font-size: 0.8125em; text-align: center; }
+
+
+
+/* === Top Navigation Menu (lifted from twentyten) =========== */
+
+#header nav { background: #111; display: block; float: left; margin: 0 auto; width: 60em; }
+#header nav ul { list-style: none; margin: 0; }
+#header nav li { float: left; position: relative; margin: 0; padding: 0; }
+/*
+#header nav a  { color: #aaa; display: block; line-height: 1; padding: 0.625em 1.5em 0.625em 0.625em; }
+#header nav li + li a { padding-left: 0.5em; padding-right: 1em; }
+#header nav li + li + li a { padding-left: 1em; padding-right: 1em; }
+*/
+#header nav a  { color: #aaa; display: block; line-height: 1; padding: 0.625em 1em; }
+#header nav ul ul { display: none; position: absolute; top: 2.25em; left: 0; float: left; width: 14em; z-index: 99999; }
+#header nav ul ul 
+{
+  box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+}
+#header nav ul ul li { min-width: 14em; }
+#header nav ul ul ul { left: 100%; top: 0; }
+#header nav ul ul a { background: #333; line-height: 1em; padding: 0.625em; width: 12.75em; height: auto; }
+#header nav li:hover > a, #header nav ul ul :hover > a { background: #333; color: #fff; }
+#header nav ul li:hover > ul { display: block; }
+
+#header nav ul li.current_page_item > a,
+#header nav ul li.current-menu-ancestor > a,
+#header nav ul li.current-menu-item > a,
+#header nav ul li.current-menu-parent > a 
+{
+  color: #fff;
+}
+
+* html #header nav ul li.current_page_item a,
+* html #header nav ul li.current-menu-ancestor a,
+* html #header nav ul li.current-menu-item a,
+* html #header nav ul li.current-menu-parent a,
+* html #header nav ul li a:hover 
+{
+  color: #fff;
+}
+
+
+
+/* === Sidebar =============================================== */
+
+ul + ul li .widget header h1,
+li + li .widget header h1
+{
+   margin-top: 1.5em;
+}
+
+.widget header h1 { font-size: 1em; line-height: 1.5em; font-weight: bold; margin: 0 0 1.5em 0; padding: 0; }
+
+.widget_search       { height: 1.5em; }
+.widget_search #s    { width: 60%; }
+.widget_search label { display: none; }
+
+#sidebar.cover { margin-top: 3em; }
+
+aside#sidebar.singular { margin-top: 4.5em; }
+aside#sidebar.singular ul.widget-stack:first-child { margin-top: -3em; }
+aside#sidebar.singular ul.widget-stack#article-copyright-widgets { margin-top: 0; }
+
+
+
+/* === Content =============================================== */
+
+section ul { list-style-type: none; margin-left: 1em; }
+section ul li:before { content: "\00BB \0020"; margin-left: -1em; color: #0095D2; display: inline; width: 1em; float: left; }
+
+section p { margin: 0; padding: 0; }
+
+section#content > header { margin: 0 2.5em; }
+
+
+article > header > h1 { float: left; margin-top: 0; }
+article > header > nav { float: right; height: 1.5em; /* height is 4px higher without this, for no reason I can find */ } 
+article > header > nav:before { content: "."; color: white; font-size: 1.5em; padding: 0; margin: 0; }
+article > header > div.article-meta { clear: both; }
+
+article > header > hgroup h1 { display: inline; }
+article > header > hgroup h2 { display: inline; margin-left: 1em; font-size: 1em; }
+article > header > hgroup h2:before { content: "("; color: #525252; } 
+article > header > hgroup h2:after  { content: ")"; color: #525252; }
+
+article > footer { margin-top: 1.5em; }
+article > footer > nav { text-align: right; padding: 1.5em 3em 0 0; }
+article > footer > nav a { font-style: italic; }
+article > footer > nav a[rel=next] { font-weight: bold; }
+article > footer dl { margin-top: 3em; }
+article > footer dt { font-weight: bold; margin-top: 1.5em; }
+
+article a.more { font-style: italic; }
+
+article table { border: 0.0625em solid #EEE; margin-bottom: -0.125em; }
+article th { background: #EEE; }
+
+
+
+article p { text-indent: 0; } 
+article * + p { margin-top: 1.5em; }
+article * + table { margin-top: 1.5em; }
+article ol, 
+article ul 
+{ 
+  margin-left: 1.5em; 
+}
+
+article.literary hr { margin: 1.5em 0 1.4375em 0; border-top: 0.0625em solid white; height: 0; }
+article.literary p { text-align: justify; text-indent: 3em; margin: 0; text-align: justify; }
+article.literary * + p { margin-top: 0; }
+article.literary ul, 
+article.literary ol 
+{ 
+  margin-left: 4em; 
+}
+
+article.literary blockquote p { text-indent: 0; }
+article.literary blockquote * + p { margin-top: 1.5em; }
+
+section.index article { padding-top: 0; padding-bottom: 3em; }
+/*
+section.index article { padding-left: 0; margin-left: 0em; }
+section.index ul { margin-left: 2.5em; }
+*/
+
+
+
+
+/* === Covers ================================================ */
+
+article.cover { border: 0.0625em solid #E2DDDE; margin-right: -5em; padding: 2.9375em 2.5em; }
+article.cover > header > p { text-align: right; font-style: italic; }
+article.cover > div { clear: both; border-top: 0.0625em solid #E2DDDE; padding-top: 1.4375em; } 
+
+#article-index ol li { padding-right: 0.3125em; }
+
+
+
+
+/* === Comments ============================================== */
+
+#comments ul { list-style-type: inherit; }
+#comments ul li:before { display: none; }
+#comments > div { margin-top: 3em; }
+
+#comments .dsq-comment-text p { margin-bottom: 1.5em; }
+ol.commentlist li.comment,
+ol.commentlist li.comment div.comment-body p { margin-top: 1.5em; }
+
+p + br { display: none; }
+p + br + br { display: none; }
