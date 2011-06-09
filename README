@@ -1,0 +1,8 @@
+The SectionedProse system turns WordPress into a publishing platform for [web fiction](http://webfictionguide.com/) and other prose. The theme is designed with readability in mind, while the administration improvments make it easy to control a site that is organized into sections (say, books, collections, etc.). With SectionedProse, each WordPress category becomes a container for content, and a configuration point for the theme. You may also override configuration settings directly on each article. See [Fiction at Courage, my friend](http://fiction.courage-my-friend.org) and [Schemaform](http://schemaform.org) for examples.
+
+In addition to the theme and plugin code here, you will also need several WordPress plugins:
+
+* markdown (with smartypants)
+* kc-settings
+* no-category-base
+
