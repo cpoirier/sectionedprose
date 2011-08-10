@@ -30,7 +30,7 @@
 
       Powered by <a href="http://wordpress.org/">WordPress</a>
       &nbsp;&middot;&nbsp;
-      Sectioned Prose Theme
+      <a href="https://github.com/cpoirier/sectionedprose" title="Repository for Sectioned Prose Theme">Sectioned Prose Theme</a>
       &nbsp;&middot;&nbsp;
       <a href="/wp-admin/">Site admin</a>
       &nbsp;&middot;&nbsp;
