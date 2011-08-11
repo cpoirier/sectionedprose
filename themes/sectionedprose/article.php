@@ -19,6 +19,7 @@
    $use_excerpt = is_archive() || is_search() || (is_home() && get_property('home_template', 'blog') == 'excerpts'); 
    $metadata_placement = get_property("article_metadata_placement", "header");
    $article_format = get_property("article_format", "technical"); 
+   $navigation_links = get_property("navigation_links", "automatic");
    
    $subtitle = null;
    if( function_exists('is_syndicated') && is_syndicated() )
@@ -49,7 +50,7 @@
       <?php if( is_singular() ) { ?>
       <nav>
          <?php edit_post_link('edit', '', '&nbsp;&nbsp; '); ?>
-         <?php if( is_single() ) { ?>
+         <?php if( is_single() && $navigation_links != "disabled" ) { ?>
          <?php sectionedprose_previous_page_link("%link &nbsp;", "&laquo; previous")?>
          <?php sectionedprose_next_page_link("&nbsp; %link", "next &raquo;")?>
          <?php } ?>
@@ -100,10 +101,12 @@
    
    <?php if( is_single() ) { ?>
    <footer>
+      <?php if( $navigation_links != "disabled" ) { ?>
       <nav>
          <?php sectionedprose_previous_page_link("%link &nbsp;", "&laquo; previous")?>
          <?php sectionedprose_next_page_link("&nbsp; %link", "next &raquo;")?>
       </nav>
+      <?php } ?>
       <?php
          ob_start();
          foreach( array("Afterword") as $field )

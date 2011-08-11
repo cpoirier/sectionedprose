@@ -40,6 +40,12 @@ html, img
 code
 {
   font: normal normal 400 0.8125em/1.5em DejaVuSansMono, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace; 
+  font-weight: bold;
+}
+
+pre code
+{
+  font-weight: normal;
   display: block;
   margin: 1.5em 0;
   padding: 1.5em;

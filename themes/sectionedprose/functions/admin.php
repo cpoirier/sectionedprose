@@ -109,6 +109,15 @@ function sectionedprose_category_properties( $groups ) {
          'desc'    => "If the articles live in a subsection, this is the slug",
          'type'    => 'input',  
       ),
+      'navigation_links' => array(
+         'id'      => 'navigation_links',
+         'title'   => "Next/Previous Links",
+         'type'    => 'select',
+         'options' => array(
+            'enabled'  => 'enabled (default)',
+            'disabled' => 'disabled'
+         )
+      ),
       'index_title'  => array(
          'id'      => 'index_title',
          'title'   => "Index Title",

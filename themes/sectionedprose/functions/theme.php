@@ -213,7 +213,7 @@ function sectionedprose_next_page_link( $link = '<h3 class="pager">%link</h3>', 
    $links = wp_link_pages( "echo=0&before=&after=&link_before=&link_after=&next_or_number=next&previouspagelink=PREVIOUS&nextpagelink=NEXT" );
    if( !$links || strpos($links, ">NEXT<") === false )
    {
-      next_post_link($link, $title, !!get_query_var("cat"));
+      next_post_link($link, $title, !!get_query_var("cat") || !!get_query_var("category_name"));
    }
    else
    {
@@ -234,7 +234,7 @@ function sectionedprose_previous_page_link( $link = '<h3 class="pager">%link</h3
    $links = wp_link_pages( "echo=0&before=&after=&link_before=&link_after=&next_or_number=next&previouspagelink=PREVIOUS&nextpagelink=NEXT" );
    if( !$links || strpos($links, ">PREVIOUS<") === false )
    {
-      previous_post_link($link, $title, !!get_query_var("cat"));
+      previous_post_link($link, $title, !!get_query_var("cat") || !!get_query_var("category_name"));
    }
    else
    {
