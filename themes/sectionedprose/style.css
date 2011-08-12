@@ -342,3 +342,5 @@ ol.commentlist li.comment div.comment-body p { margin-top: 1.5em; }
 
 p + br { display: none; }
 p + br + br { display: none; }
+
+p.nocomments { display: none; }
