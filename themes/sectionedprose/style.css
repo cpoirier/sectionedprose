@@ -111,8 +111,11 @@ ul li { margin: 0; padding: 0; }
 .clear { clear: both; }
 img.right { float: right; margin: 0 0 1em 1em; }
 
-strong { font-weight: normal; font-style: italic; }
-strong strong { font-weight: bold; }
+strong { font-weight: bold; }
+strong strong { font-style: italic; }
+
+em { font-weight: normal; font-style: italic; }
+em em { font-weight: bold; }
 
 blockquote
 {
