@@ -70,9 +70,11 @@
    </section></li>
 <?php } ?>
 
-<?php get_template_part("widget-article-index"); ?>
+<?php if( get_property("cover_indices", "enabled") != "disabled" ) { ?>
+   <?php get_template_part("widget-article-index"); ?>
 
-<?php get_template_part("widget-recent-articles"); ?>
+   <?php get_template_part("widget-recent-articles"); ?>
+<?php } ?>
 
 </ul>   
 </aside>

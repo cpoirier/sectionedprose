@@ -103,6 +103,15 @@ function sectionedprose_category_properties( $groups ) {
          'desc'    => "Freeform Markdown for use on the section cover (if used).",
          'type'    => 'textarea' 
       ),
+      'cover_indices' => array(
+         'id'      => 'cover_indices',
+         'title'   => "Show Articles on Cover",
+         'type'    => 'select',
+         'options' => array(
+            'enabled'  => 'enabled (default)',
+            'disabled' => 'disabled'
+         )
+      ),
       'article_section' => array(
          'id'      => 'article_section',
          'title'   => "Article Section",
