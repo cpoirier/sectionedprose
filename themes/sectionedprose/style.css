@@ -195,7 +195,7 @@ article { padding: 1.5em 0 1.5em 2.5em; border: 0; }
 
 /* === Top Navigation Menu (lifted from twentyten) =========== */
 
-#header nav { background: #111; display: block; float: left; margin: 0 auto; width: 60em; }
+#header nav { background: #181818; display: block; float: left; margin: 0 auto; width: 60em; }
 #header nav ul { list-style: none; margin: 0; }
 #header nav li { float: left; position: relative; margin: 0; padding: 0; }
 /*
