@@ -36,6 +36,8 @@
       $query->the_post();
       $first_page_url = get_permalink();
    }
+
+   $cover_indices = get_property("cover_indices", "enabled");
 ?>
 <?php get_header(); ?>
 
@@ -52,7 +54,7 @@
    </div>
    <?php } ?>
    
-   <?php if( $first_page_url ) { ?>
+   <?php if( $first_page_url && $cover_indices != "recent" ) { ?>
    <footer>
    <nav><a rel="next" href="<?php echo esc_url($first_page_url)?>">start reading now &raquo;</a></nav>
    </footer>
@@ -64,15 +66,17 @@
 <aside id="sidebar" class="cover <?php echo is_singular() ? "singular" : "";?>">
 <ul class="widget-stack">
 
-<?php if( $first_page_url ) { ?>
+<?php if( $first_page_url && $cover_indices != "recent" ) { ?>
    <li><section class="widget">
    <header><h1><a href="<?php echo esc_url($first_page_url)?>">Start reading now &raquo;</a></h1></header>
    </section></li>
 <?php } ?>
 
-<?php if( get_property("cover_indices", "enabled") != "disabled" ) { ?>
+<?php if( $cover_indices != "disabled" && $cover_indices != "recent" ) { ?>
    <?php get_template_part("widget-article-index"); ?>
+<?php } ?>
 
+<?php if( $cover_indices != "disabled" && $cover_indices != "contents" ) { ?>
    <?php get_template_part("widget-recent-articles"); ?>
 <?php } ?>
 

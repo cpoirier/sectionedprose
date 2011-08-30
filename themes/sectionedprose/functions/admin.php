@@ -108,8 +108,10 @@ function sectionedprose_category_properties( $groups ) {
          'title'   => "Show Articles on Cover",
          'type'    => 'select',
          'options' => array(
-            'enabled'  => 'enabled (default)',
-            'disabled' => 'disabled'
+            'all'      => 'contents and recent (default)',
+            'contents' => 'contents only',
+            'recent'   => 'recent only',
+            'disabled' => 'none'
          )
       ),
       'article_section' => array(
