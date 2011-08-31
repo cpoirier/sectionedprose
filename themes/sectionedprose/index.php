@@ -16,9 +16,20 @@
 //             limitations under the License.
 // =============================================================================================
 ?>
+<?php $home_template = get_property('home_template', 'blog'); ?>
 <?php $category = is_category() ? get_category(get_query_var("cat")) : null; ?>
 <?php get_header(); ?>
 
+<?php if( is_home() && ($home_template == 'widgets' || is_active_sidebar('home-sidebar')) ) { ?>
+<aside id="widebar">
+   <ul id="home-main" class="widget-stack body">
+        <?php dynamic_sidebar('home-main'); ?>
+   </ul>
+</aside>
+<?php } ?>
+
+
+<?php if( !is_home() || $home_template != 'widgets' ) { ?>
 <section id="content" class="<?php echo is_singular() ? "singular" : "index"?>">
    <?php if( is_archive() || (false && $wp_query->max_num_pages > 1) ) { ?>
    <header>
@@ -38,7 +49,14 @@
          while( have_posts() ) 
          { 
             the_post();
-            get_template_part("article"); 
+            if( function_exists('is_syndicated') && is_syndicated() && !(strpos(get_permalink(), "https://github.com") === false) )
+            {
+               get_template_part("github-commit");
+            }
+            else
+            {
+               get_template_part("article"); 
+            }
          }
       }
       else
@@ -59,9 +77,8 @@
    </footer>
    <?php } ?>
    
-   
-   
 </section>
+<?php } ?>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

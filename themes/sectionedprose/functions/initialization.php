@@ -105,6 +105,7 @@ function sectionedprose_widgets_init()
       array('name' => 'Sidebar Bottom (all pages)'     , 'id' => 'global-sidebar-bottom', 'description' => 'Appears at the bottom of the sidebar on every page'        ),
       array('name' => 'Footer First (all pages)'       , 'id' => 'global-footer-first'  , 'description' => 'Appears at the top/left of the footer on every page'       ),
       array('name' => 'Footer Last (all pages)'        , 'id' => 'global-footer-last'   , 'description' => 'Appears at the bottom/right of the footer on every page'   ),
+      array('name' => 'Home Main'                      , 'id' => 'home-main'            , 'description' => 'Appears at the top of the main home page column'           ),
    );
 
    foreach( $sidebars as $sidebar )

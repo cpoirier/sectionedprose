@@ -73,6 +73,9 @@ article > header h2 { font-size: 1.375em; margin: 0; }
 article > header { margin: 0 0 1.5em 0; }
 article > header:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; .zoom: 1; .display: block; }
 
+article.github-commit > header h1 { font-size: 1.125em; margin: 1.3333em 0; text-decoration: underline; }
+article.github-commit > header { margin-bottom: 0; }
+article.github-commit pre code { background: #FAFAFA; margin-top: 0; }
 
 h1, h2, h3
 {
@@ -148,20 +151,20 @@ ol.inline, ol.inline li
 body { width: 60em; margin: 0 auto; padding: 1.5em 2.5em; background: white; }
 
 #main { padding: 4.5em 0; }
-#content, #sidebar { display: inline; float: left; margin-left: 0.3125em; margin-right: 0.3125em; }
+#content, #sidebar, #widebar { display: inline; float: left; margin-left: 0.3125em; margin-right: 0.3125em; }
 
 /* Without the border: */
-#content { width: 34.375em; /* 16 */ padding: 0 5.3125em 0 2.5em; /* 2 + margin */ }
+#content, #widebar { width: 34.375em; /* 16 */ padding: 0 5.3125em 0 2.5em; /* 2 + margin */ }
 #sidebar { width: 14.375em; /* 6  */ }
 article { padding: 2.25em 2.5em; } 
 
 /* With the border: */
-#content { width: 39.375em; /* 16 */ padding: 0 5em 0 0; /* 1 suffix */ }
+#content, #widebar { width: 39.375em; /* 16 */ padding: 0 5em 0 0; /* 1 suffix */ }
 #sidebar { width: 14.375em; /* 6  */ }
 article { padding: 4.4375em 4.9375em; border: 0.0625em solid #E2DDDE; }
 
 /* Without border or indent */
-#content { width: 34.375em; /* 16 */ padding: 0 7.5em 0 0; }
+#content, #widebar { width: 34.375em; /* 16 */ padding: 0 7.5em 0 0; }
 #sidebar { width: 14.375em; /* 6  */ }
 article { padding: 1.5em 0 1.5em 2.5em; border: 0; }
 
@@ -256,6 +259,8 @@ aside#sidebar.singular { margin-top: 4.5em; }
 aside#sidebar.singular ul.widget-stack:first-child { margin-top: -3em; }
 aside#sidebar.singular ul.widget-stack#article-copyright-widgets { margin-top: 0; }
 
+aside#widebar { margin-bottom: 3em; }
+
 
 
 /* === Content =============================================== */
@@ -322,6 +327,8 @@ section.index ul { margin-left: 2.5em; }
 
 
 
+
+
 /* === Covers ================================================ */
 
 article.cover { border: 0.0625em solid #E2DDDE; margin-right: -5em; padding: 2.9375em 2.5em; }
@@ -347,3 +354,5 @@ p + br { display: none; }
 p + br + br { display: none; }
 
 p.nocomments { display: none; }
+
+

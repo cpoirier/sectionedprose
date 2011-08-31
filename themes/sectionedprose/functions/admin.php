@@ -27,6 +27,7 @@ function sectionedprose_theme_properties( $settings )
          'options' => array(
             'blog'     => 'Blog Format',
             'excerpts' => 'Blog Format, excerpts only',
+            'widgets'  => 'Widgets only',
          )
       ),
       'font_selection' => array(
