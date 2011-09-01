@@ -23,7 +23,7 @@
       <h1>
          <?php if( $tags = get_the_tags() ) { ?>
             <a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a>:
-            committed to <?php echo $tags[0]->name; ?>
+            committed to <?php foreach($tags as $tag) { echo $tag->name; break; } ?>
          <?php } else { ?>
             Commit: <a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a>
          <?php } ?>
