@@ -44,3 +44,13 @@ function markup( $text, $inline = false )
       return strip_tags($text);
    }
 }
+
+add_filter('widget_links_args', 'sectionedprose_order_widget_links');
+function sectionedprose_order_widget_links($array)
+{
+   $array["orderby"] = "rating,name";
+   $array["order"  ] = "ASC";
+
+   return $array;
+}
+

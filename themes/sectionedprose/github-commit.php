@@ -21,8 +21,12 @@
    <header>
       <?php if( $subtitle ) { echo "<hgroup>\n"; } ?>
       <h1>
-         <a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a>:
-         committed to <?php $category = get_the_category(); echo $category[0]->cat_name; ?>
+         <?php if( $tags = get_the_tags() ) { ?>
+            <a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a>:
+            committed to <?php echo $tags[0]->name; ?>
+         <?php } else { ?>
+            Commit: <a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a>
+         <?php } ?>
       </h1>
 
       <?php if( is_singular() ) { ?>
