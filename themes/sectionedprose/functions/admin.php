@@ -20,16 +20,6 @@ add_filter( 'kc_plugin_settings', 'sectionedprose_theme_properties' );
 function sectionedprose_theme_properties( $settings ) 
 {
    $fields = array(
-      'home_template' => array(
-         'id'      => 'home_template',
-         'title'   => 'Home Page Template',
-         'type'    => 'select',
-         'options' => array(
-            'blog'     => 'Blog Format',
-            'excerpts' => 'Blog Format, excerpts only',
-            'widgets'  => 'Widgets only',
-         )
-      ),
       'font_selection' => array(
          'id'      => 'font_selection',
          'title'   => 'Font Selection',
@@ -57,7 +47,7 @@ function sectionedprose_theme_properties( $settings )
       'options'       => array(
          'sectionedprose_properties' => array(
             'id'     => 'sectionedprose_properties',
-            'fields' => sectionedprose_add_global_properties(sectionedprose_add_layout_properties($fields))
+            'fields' => sectionedprose_add_global_properties(sectionedprose_add_layout_properties(sectionedprose_add_section_properties($fields)))
          )
       )
    );
@@ -86,35 +76,6 @@ function sectionedprose_category_properties( $groups ) {
          'desc'    => "If this category is a section, you can override the page subtitle with Markdown.  If this category is a subsection, you can only extend the page subtitle.  Default behaviour is to show the context subtitle.",
          'type'    => 'input' 
       ),
-      'index_behaviour' => array(
-         'id'      => 'index_behaviour',
-         'title'   => 'Index Behaviour',
-         'type'    => 'select',
-         'options' => array(
-            'category' => 'excerpts; latest first',
-            'blog'     => 'full articles; latest first',
-            'cover'    => 'book-like cover page',
-            'latest'   => 'redirect to latest article',
-            'first'    => 'redirect to first article'
-         )
-      ),
-      'cover_text' => array(
-         'id'      => 'cover_text',
-         'title'   => "Cover Text",
-         'desc'    => "Freeform Markdown for use on the section cover (if used).",
-         'type'    => 'textarea' 
-      ),
-      'cover_indices' => array(
-         'id'      => 'cover_indices',
-         'title'   => "Show Articles on Cover",
-         'type'    => 'select',
-         'options' => array(
-            'all'      => 'contents and recent (default)',
-            'contents' => 'contents only',
-            'recent'   => 'recent only',
-            'disabled' => 'none'
-         )
-      ),
       'article_section' => array(
          'id'      => 'article_section',
          'title'   => "Article Section",
@@ -130,18 +91,6 @@ function sectionedprose_category_properties( $groups ) {
             'disabled' => 'disabled'
          )
       ),
-      'index_title'  => array(
-         'id'      => 'index_title',
-         'title'   => "Index Title",
-         'desc'    => "If a section index is displayed, this is the label",
-         'type'    => 'input',  
-      ),
-      'index_limit' => array(
-         'id'      => 'index_limit',
-         'title'   => "Index Limit",
-         'desc'    => "The maximum number of articles to show in the article index.  Default is 30",
-         'type'    => 'input',  
-      ),
    );
    
    $groups[] = array(
@@ -151,7 +100,7 @@ function sectionedprose_category_properties( $groups ) {
             'title'    => 'Theme Control',
             'priority' => 'high',
             'role'     => array('administrator', 'editor'),
-            'fields'   => sectionedprose_add_global_properties(sectionedprose_add_layout_properties($fields))
+            'fields'   => sectionedprose_add_global_properties(sectionedprose_add_layout_properties(sectionedprose_add_section_properties($fields)))
          )
       )
    );
@@ -255,6 +204,62 @@ function sectionedprose_add_layout_properties( $context )
    );
    
    return $context;   
+}
+
+
+function sectionedprose_add_section_properties( $context )
+{
+   $context['index_behaviour'] = array(
+      'id'      => 'index_behaviour',
+      'title'   => 'Index Behaviour',
+      'type'    => 'select',
+      'options' => array(
+         'category' => 'excerpts; latest first',
+         'blog'     => 'full articles; latest first',
+         'excerpts' => 'article excerpts; latest first',
+         'titles'   => 'article titles; latest first',
+         'titles+'  => 'article titles, with most recent article expanded if recent',
+         'cover'    => 'book-like cover page',
+         'latest'   => 'redirect to latest article',
+         'first'    => 'redirect to first article',
+         'blank'    => 'widgets only',
+      )
+   );
+
+   $context['cover_text'] = array(
+      'id'      => 'cover_text',
+      'title'   => "Cover Text",
+      'desc'    => "Freeform Markdown for use on the section cover (if used).",
+      'type'    => 'textarea' 
+   );
+
+   $context['cover_indices'] = array(
+      'id'      => 'cover_indices',
+      'title'   => "Show Articles on Cover",
+      'type'    => 'select',
+      'options' => array(
+         'all'      => 'contents and recent (default)',
+         'contents' => 'contents only',
+         'recent'   => 'recent only',
+         'disabled' => 'none'
+      )
+   );
+
+   $context['index_title'] = array(
+      'id'      => 'index_title',
+      'title'   => "Index Title",
+      'desc'    => "If a section index is displayed, this is the label",
+      'type'    => 'input',  
+   );
+
+   $context['index_limit'] = array(
+      'id'      => 'index_limit',
+      'title'   => "Index Limit",
+      'desc'    => "The maximum number of articles to show in the article index.  Default is 30",
+      'type'    => 'input',  
+   );
+
+   return $context;
 }
 
 
