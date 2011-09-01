@@ -41,6 +41,7 @@
 ?>
 <?php get_header(); ?>
 
+<div id="main">
 <section id="content" class="body">
 <article class="cover <?php echo get_property("article_format", "technical")?>">
    <header>
@@ -61,6 +62,7 @@
    <?php } ?>
 </article>
 </section>
+</div>
 
 
 <aside id="sidebar" class="cover <?php echo is_singular() ? "singular" : "";?>">

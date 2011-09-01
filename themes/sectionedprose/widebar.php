@@ -16,42 +16,12 @@
 //             limitations under the License.
 // =============================================================================================
 ?>
-<?php get_header(); ?>
+<?php if( is_front_page() && is_active_sidebar('home-main') ) { ?>
+<?php global $index_mode; $sharing = (have_posts() && $index_mode != "empty"); ?>
+<aside id="widebar">
+   <ul id="home-main" class="widget-stack body">
+        <?php dynamic_sidebar('home-main'); ?>
+   </ul>
+</aside>
+<?php } ?>
 
-<div id="main">
-<?php get_template_part("widebar"); ?>
-
-<section id="content" class="singular">
-   <?php 
-      if( have_posts() ) 
-      {
-         while( have_posts() ) 
-         { 
-            the_post();
-            if( function_exists('is_syndicated') && is_syndicated() && !(strpos(get_permalink(), "https://github.com") === false) )
-            {
-               get_template_part("github-commit");
-            }
-            else
-            {
-               get_template_part("article"); 
-            }
-         }
-      }
-      else
-      {
-         echo "no matches";
-      }
-   ?>
-
-   <footer>
-      <section id="comments">
-      <?php comments_template( '', true ); ?>   
-      </section>
-   </footer>
-   
-</section>
-</div>
-
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>

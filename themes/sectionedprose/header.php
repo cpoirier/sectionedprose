@@ -43,7 +43,7 @@
 
 
 
-<body id="body" <?php body_class(); ?>>
+<body <?php body_class(); ?>>
 
 <header id="header" class="container">
    <hgroup>
@@ -56,5 +56,5 @@
    <?php sectionedprose_nav_menu("primary"); ?>
 </header>
 
-<div id="main" class="container">
+<div id="body" class="container">
 

@@ -54,3 +54,11 @@ function sectionedprose_order_widget_links($array)
    return $array;
 }
 
+add_filter('widget_text', 'markdown');
+add_filter('widget_title', 'sectionedprose_markdown_widget_title');
+function sectionedprose_markdown_widget_title( $title, &$instance, &$id_base )
+{
+   return markdown($title);
+}
+
+

@@ -90,13 +90,8 @@
 <?php $category = is_category() ? get_category(get_query_var("cat")) : null; ?>
 <?php get_header(); ?>
 
-<?php if( is_home() && is_active_sidebar('home-main') ) { ?>
-<aside id="widebar">
-   <ul id="home-main" class="widget-stack body">
-        <?php dynamic_sidebar('home-main'); ?>
-   </ul>
-</aside>
-<?php } ?>
+<div id="main">
+<?php get_template_part("widebar"); ?>
 
 <section id="content" class="index">
    <?php if( is_archive() || $paged > 1 ) { ?>
@@ -158,6 +153,7 @@
    <?php } ?>
    
 </section>
+</div>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

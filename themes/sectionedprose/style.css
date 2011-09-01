@@ -149,23 +149,13 @@ ol.inline, ol.inline li
 
 body { width: 60em; margin: 0 auto; padding: 1.5em 2.5em; background: white; }
 
-#main { padding: 4.5em 0; }
-#content, #sidebar, #widebar { display: inline; float: left; margin-left: 0.3125em; margin-right: 0.3125em; }
+#body { margin: 0; padding: 4.5em 0; }
+#sidebar, #main { display: inline; float: left; margin-left: 0.3125em; margin-right: 0.3125em; }
 
-/* Without the border: */
-#content, #widebar { width: 34.375em; /* 16 */ padding: 0 5.3125em 0 2.5em; /* 2 + margin */ }
-#sidebar { width: 14.375em; /* 6  */ }
-article { padding: 2.25em 2.5em; } 
-
-/* With the border: */
-#content, #widebar { width: 39.375em; /* 16 */ padding: 0 5em 0 0; /* 1 suffix */ }
-#sidebar { width: 14.375em; /* 6  */ }
-article { padding: 4.4375em 4.9375em; border: 0.0625em solid #E2DDDE; }
-
-/* Without border or indent */
-#content, #widebar { width: 34.375em; /* 16 */ padding: 0 7.5em 0 0; }
+#main { width: 34.375em; /* 16 */ padding: 0 7.5em 0 0; }
 #sidebar { width: 14.375em; /* 6  */ }
 article { padding: 1.5em 0 1.5em 2.5em; border: 0; }
+#widebar { padding: 0 0 0 2.5em; border: 0; }
 
 
 
