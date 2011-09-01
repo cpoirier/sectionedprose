@@ -19,7 +19,7 @@
 //
 // Retrieves a named property from the post or local section.
 
-function get_property( $name, $default = null, $finest_grain = "post", $section_id = 0, $attempts = 1000000 )
+function get_property( $name, $default = null, $finest_grain = "post", $attempts = 1000000, $section_id = 0 )
 {
    global $post, $property_found_at;
    $property_found_at = 0;
@@ -55,7 +55,7 @@ function get_property( $name, $default = null, $finest_grain = "post", $section_
          $attempts -= 1;
       }
    }
-   
+ 
    if( $attempts > 0 && function_exists('kc_get_option') && ($value = kc_get_option('sectionedprose', 'sectionedprose_properties', $name)) )
    {
       $attempts -= 1;

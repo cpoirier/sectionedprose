@@ -16,37 +16,52 @@
 //             limitations under the License.
 // =============================================================================================
 
-   $use_excerpt = is_archive() || is_search() || (is_home() && get_property('home_template', 'blog') == 'excerpts'); 
-   $metadata_placement = get_property("article_metadata_placement", "header");
-   $article_format = get_property("article_format", "technical"); 
-   $navigation_links = get_property("navigation_links", "automatic");
-   
-   $subtitle = null;
-   if( function_exists('is_syndicated') && is_syndicated() )
+   if( function_exists('is_syndicated') && is_syndicated() && is_numeric(strpos(get_permalink(), "https://github.com")) )
    {
-      ob_start();
-      ?><a href="<?php the_syndication_source_link()?>"><?php echo get_feed_meta("Feed Tag")?></a><?php
-      $subtitle = ob_get_clean();
+      get_template_part("github-commit");
+      return;
    }
-   elseif( !is_singular() && !is_category() )
-   {
-      if( $section_id = get_master_section_id() )
-      {
-         $category = get_category($section_id);
 
+   global $article_mode;
+
+   $use_excerpt        = ($article_mode == "excerpt");
+   $metadata_placement = get_property("article_metadata_placement", "header");
+   $article_format     = get_property("article_format", "technical"); 
+   $navigation_links   = get_property("navigation_links", "automatic");
+   
+
+   //
+   // Build a pretty excerpt, if necessary. The WordPress-generated one can be pretty ugly.
+
+   $excerpt = "";
+   if( $use_excerpt || (function_exists('is_syndicated') && is_syndicated()) ) 
+   {
+      ob_start(); 
+      the_excerpt(); 
+      $excerpt = str_replace("&nbsp;", "", strip_tags(ob_get_clean()));
+
+      ob_start(); 
+      ?>&nbsp;.&nbsp;.&nbsp;. <a class="more" title="<?php the_title?>" href="<?php the_permalink()?>">continue&nbsp;reading&nbsp;&raquo;</a><?php
+      $more_link = ob_get_clean();
+
+      if( preg_match("/\s*\\[?\\.\\.\\.\\]?\s*$/", $excerpt) )
+      {
+         $use_excerpt = true;
          ob_start();
-         ?><a href="<?php echo esc_url(get_category_link($section_id))?>" title="link to <?php echo esc_attr($category->cat_name)?>"><?php echo esc_attr($category->cat_name);?></a><?php
-         $subtitle = ob_get_clean();
+         echo "<p>";
+         echo preg_replace( "/\s*\\[?\\.\\.\\.\\]?\s*$/", $more_link, $excerpt );
+         echo "</p>\n";
+         $excerpt = ob_get_clean();
+      }
+      else
+      {
+         $use_excerpt = false;
       }
    }
-   
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class($article_format)?>>
    <header>
-      <?php if( $subtitle ) { echo "<hgroup>\n"; } ?>
-      <h1><a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php the_title()?></a></h1> 
-      <?php if( $subtitle ) { echo "<h2>"; echo $subtitle; echo "</h2>\n"; echo "</hgroup>\n"; } ?>
-
+      <?php get_template_part("article-title"); ?>
       <?php if( is_singular() ) { ?>
       <nav>
          <?php edit_post_link('edit', '', '&nbsp;&nbsp; '); ?>
@@ -69,30 +84,11 @@
    <div class="<?php echo $use_excerpt ? "excerpt" : "content"?> clear hyphenate">
       <!-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit accumsan</p> -->
       <?php 
-         if( $use_excerpt || (function_exists('is_syndicated') && is_syndicated()) ) 
+         if( $use_excerpt )
          {
-            ob_start(); 
-            the_excerpt(); 
-            $excerpt = str_replace("&nbsp;", "", strip_tags(ob_get_clean()));
-
-            ob_start(); 
-            ?>&nbsp;.&nbsp;.&nbsp;. <a class="more" title="<?php the_title?>" href="<?php the_permalink()?>">continue&nbsp;reading&nbsp;&raquo;</a><?php
-            $more_link = ob_get_clean();
-
-            if( preg_match("/\s*\\[?\\.\\.\\.\\]?\s*$/", $excerpt) )
-            {
-               $use_excerpt = true;
-               echo "<p>";
-               echo preg_replace( "/\s*\\[?\\.\\.\\.\\]?\s*$/", $more_link, $excerpt );
-               echo "</p>\n";
-            }
-            else
-            {
-               $use_excerpt = false;
-            }
+            echo $excerpt;
          }
-
-         if( !$use_excerpt )
+         else
          {
             the_content();
          }

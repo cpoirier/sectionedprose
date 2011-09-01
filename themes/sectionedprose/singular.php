@@ -15,25 +15,38 @@
 //             See the License for the specific language governing permissions and
 //             limitations under the License.
 // =============================================================================================
-
-   $section_id      = get_section_id();
-   $index_behaviour = get_property("index_behaviour", "category", $section_id, "section", 1 );
-   
-   switch( $index_behaviour )
-   {
-      case "latest":
-      case "first":
-         query_posts(array("cat" => $section_id, "order" => $index_behaviour == "first" ? "asc" : "desc", "posts_per_page" => 1));
-         if( have_posts() )
-         {
+?>
+<?php get_header(); ?>
+<section id="content" class="singular">
+   <?php 
+      if( have_posts() ) 
+      {
+         while( have_posts() ) 
+         { 
             the_post();
-            wp_redirect( get_permalink() );
-            exit;
+            if( function_exists('is_syndicated') && is_syndicated() && !(strpos(get_permalink(), "https://github.com") === false) )
+            {
+               get_template_part("github-commit");
+            }
+            else
+            {
+               get_template_part("article"); 
+            }
          }
-         break;
-      case "cover":
-         require(STYLESHEETPATH . "/cover.php");
-         exit;
-   }
+      }
+      else
+      {
+         echo "no matches";
+      }
+   ?>
+
+   <footer>
+      <section id="comments">
+      <?php comments_template( '', true ); ?>   
+      </section>
+   </footer>
    
-   require(STYLESHEETPATH . "/index.php");      
+</section>
+
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

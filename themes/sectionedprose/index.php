@@ -15,12 +15,82 @@
 //             See the License for the specific language governing permissions and
 //             limitations under the License.
 // =============================================================================================
+
+   global $index_behaviour, $article_mode, $index_mode;
+   $index_behaviour = 'excerpts';
+   $article_mode    = 'content';
+   $index_mode      = 'articles';
+
+   if( is_singular() ) 
+   {
+      get_template_part("singular");
+      exit;
+   }
+   else if( is_home() || is_category() )
+   {
+      $scope = is_home() ? "theme" : "section";
+      $section_id = -1;
+
+      if( is_home() )
+      {
+         $index_behaviour = get_property("home_template", $index_behaviour);
+      }
+      else
+      {
+         $section_id = get_section_id();
+      }
+ 
+      $index_behaviour = get_property("index_behaviour", $index_behaviour, $scope, 1, $section_id);
+      $switch = 0 + get_property("change_index_behaviour_after", 0, $scope, 1, $section_id);
+      if( $switch > 0 && have_posts() )
+      {
+         the_post();
+         if( strtotime($post->post_date) <= time() - (3600 * 24 * $switch) )
+         {
+            $index_behaviour = get_property("index_behaviour_alt", $index_behaviour, $scope, 1, $section_id);
+         }
+         rewind_posts();
+      }
+
+      switch( $index_behaviour )
+      {
+         case 'category':
+         case 'excerpts':
+            $article_mode = 'excerpt';
+            break;
+
+         case 'titles':
+            $index_mode = 'titles';
+            break;
+   
+         case 'titles+':
+            $index_mode = 'feature';
+            break;
+   
+         case 'blank':
+            $index_mode = 'empty';
+            break;
+    
+         case "latest":
+         case "first":
+            query_posts(array("cat" => $section_id, "order" => $index_behaviour == "first" ? "asc" : "desc", "posts_per_page" => 1));
+            if( have_posts() )
+            {
+               the_post();
+               wp_redirect( get_permalink() );
+               exit;
+            }
+            break;
+         case "cover":
+            require(STYLESHEETPATH . "/cover.php");
+            exit;
+      }
+   }
 ?>
-<?php $home_template = get_property('home_template', 'blog'); ?>
 <?php $category = is_category() ? get_category(get_query_var("cat")) : null; ?>
 <?php get_header(); ?>
 
-<?php if( is_home() && ($home_template == 'widgets' || is_active_sidebar('home-sidebar')) ) { ?>
+<?php if( is_home() && is_active_sidebar('home-main') ) { ?>
 <aside id="widebar">
    <ul id="home-main" class="widget-stack body">
         <?php dynamic_sidebar('home-main'); ?>
@@ -28,40 +98,62 @@
 </aside>
 <?php } ?>
 
-
-<?php if( !is_home() || $home_template != 'widgets' ) { ?>
-<section id="content" class="<?php echo is_singular() ? "singular" : "index"?>">
-   <?php if( is_archive() || (false && $wp_query->max_num_pages > 1) ) { ?>
+<section id="content" class="index">
+   <?php if( is_archive() || $paged > 1 ) { ?>
    <header>
-      <?php if( false && $wp_query->max_num_pages > 1 ) { ?>
-      <nav><?php next_posts_link('&larr; Older posts'); ?> <?php previous_posts_link('Newer posts &rarr;'); ?></nav>
-      <?php } ?>
       <?php if( $category ) { ?>
          <?php if( trim($category->category_description) ) { echo markdown($category->category_description); echo "<hr/>\n"; } ?>
          <h2>Articles related to <i><?php echo esc_attr($category->cat_name);?></i></h2>
+      <?php } else if( $paged > 1 ) { ?>
+         <h2>. . . page <?php echo $paged?></h2>
       <?php } ?>
    </header>
    <?php } ?>
 
    <?php 
-      if( have_posts() ) 
+      if( $index_mode != "empty" )
       {
-         while( have_posts() ) 
-         { 
-            the_post();
-            if( function_exists('is_syndicated') && is_syndicated() && !(strpos(get_permalink(), "https://github.com") === false) )
+         if( have_posts() ) 
+         {
+            if( $index_mode == "feature" && $paged == 0 )
             {
-               get_template_part("github-commit");
+               the_post();
+               get_template_part("article"); 
+               if( have_posts() )
+               {
+                  ?><h1>Older entries</h1>
+                  <?php
+               }
+            }
+   
+            if( $index_mode == "titles" || $index_mode == "feature" )
+            {
+               echo "<ul class=\"title-list\">\n";
+               while( have_posts() )
+               {
+                  the_post();
+                  ?><li><article id="post-<?php the_ID(); ?>"><header>
+                     <?php get_template_part("article-title"); ?>
+                     <?php get_template_part("article-metadata"); ?>
+                  </header></article>
+                  </li>
+                  <?php
+               }
+               echo "</ul>\n";
             }
             else
             {
-               get_template_part("article"); 
+               while( have_posts() ) 
+               {
+                  the_post();
+                  get_template_part("article"); 
+               }
             }
          }
-      }
-      else
-      {
-         echo "no matches";
+         else
+         {
+            echo "no matches";
+         } 
       }
    ?>
 
@@ -69,16 +161,9 @@
    <footer>
       <nav><?php next_posts_link('&larr; Older posts'); ?> <?php previous_posts_link('Newer posts &rarr;'); ?></nav>
    </footer>
-   <?php } elseif( is_singular() ) {  ?>
-   <footer>
-      <section id="comments">
-      <?php comments_template( '', true ); ?>   
-      </section>
-   </footer>
    <?php } ?>
    
 </section>
-<?php } ?>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

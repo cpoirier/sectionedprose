@@ -47,7 +47,7 @@ function sectionedprose_theme_properties( $settings )
       'options'       => array(
          'sectionedprose_properties' => array(
             'id'     => 'sectionedprose_properties',
-            'fields' => sectionedprose_add_global_properties(sectionedprose_add_layout_properties(sectionedprose_add_section_properties($fields)))
+            'fields' => sectionedprose_add_global_properties(sectionedprose_add_layout_properties(sectionedprose_add_index_properties($fields, true)))
          )
       )
    );
@@ -100,7 +100,7 @@ function sectionedprose_category_properties( $groups ) {
             'title'    => 'Theme Control',
             'priority' => 'high',
             'role'     => array('administrator', 'editor'),
-            'fields'   => sectionedprose_add_global_properties(sectionedprose_add_layout_properties(sectionedprose_add_section_properties($fields)))
+            'fields'   => sectionedprose_add_global_properties(sectionedprose_add_layout_properties(sectionedprose_add_index_properties($fields, false)))
          )
       )
    );
@@ -207,7 +207,7 @@ function sectionedprose_add_layout_properties( $context )
 }
 
 
-function sectionedprose_add_section_properties( $context )
+function sectionedprose_add_index_properties( $context, $is_home )
 {
    $context['index_behaviour'] = array(
       'id'      => 'index_behaviour',
@@ -218,46 +218,65 @@ function sectionedprose_add_section_properties( $context )
          'blog'     => 'full articles; latest first',
          'excerpts' => 'article excerpts; latest first',
          'titles'   => 'article titles; latest first',
-         'titles+'  => 'article titles, with most recent article expanded if recent',
-         'cover'    => 'book-like cover page',
+         'titles+'  => 'one featured article, followed by article titles, latest first',
          'latest'   => 'redirect to latest article',
          'first'    => 'redirect to first article',
-         'blank'    => 'widgets only',
       )
    );
 
-   $context['cover_text'] = array(
-      'id'      => 'cover_text',
-      'title'   => "Cover Text",
-      'desc'    => "Freeform Markdown for use on the section cover (if used).",
-      'type'    => 'textarea' 
-   );
+   if( $is_home )
+   {
+      $context['index_behaviour']['options']['blank'] = 'widgets only';
+   }
+   else
+   {
+      $context['index_behaviour']['options']['cover'] = 'book-like cover page';
+   }
 
-   $context['cover_indices'] = array(
-      'id'      => 'cover_indices',
-      'title'   => "Show Articles on Cover",
-      'type'    => 'select',
-      'options' => array(
-         'all'      => 'contents and recent (default)',
-         'contents' => 'contents only',
-         'recent'   => 'recent only',
-         'disabled' => 'none'
-      )
-   );
-
-   $context['index_title'] = array(
-      'id'      => 'index_title',
-      'title'   => "Index Title",
-      'desc'    => "If a section index is displayed, this is the label",
+   $context['change_index_behaviour_after'] = array(
+      'id'      => 'change_index_behaviour_after',
+      'title'   => "Change Index Behaviour After",
+      'desc'    => "If set, the system will use the Alternate Index Behaviour starting this many days after the last post",
       'type'    => 'input',  
    );
 
-   $context['index_limit'] = array(
-      'id'      => 'index_limit',
-      'title'   => "Index Limit",
-      'desc'    => "The maximum number of articles to show in the article index.  Default is 30",
-      'type'    => 'input',  
-   );
+   $context['index_behaviour_alt'] = array_merge($context['index_behaviour'], array('id' => 'index_behaviour_alt', 'title' => 'Alternate Index Behaviour'));
+
+   if( !$is_home )
+   {
+      $context['cover_text'] = array(
+         'id'      => 'cover_text',
+         'title'   => "Cover Text",
+         'desc'    => "Freeform Markdown for use on the section cover (if used).",
+         'type'    => 'textarea' 
+      );
+   
+      $context['cover_indices'] = array(
+         'id'      => 'cover_indices',
+         'title'   => "Show Article Index on Cover",
+         'type'    => 'select',
+         'options' => array(
+            'all'      => 'contents and recent (default)',
+            'contents' => 'contents only',
+            'recent'   => 'recent only',
+            'disabled' => 'none'
+         )
+      );
+   
+      $context['index_title'] = array(
+         'id'      => 'index_title',
+         'title'   => "Cover Index Title",
+         'desc'    => "If the cover shows an article index, this is the label",
+         'type'    => 'input',  
+      );
+   
+      $context['index_limit'] = array(
+         'id'      => 'index_limit',
+         'title'   => "Cover Index Limit",
+         'desc'    => "The maximum number of articles to show in the cover article index.  Default is 30",
+         'type'    => 'input',  
+      );
+   }
 
    return $context;
 }

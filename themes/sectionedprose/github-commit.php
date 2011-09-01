@@ -15,12 +15,8 @@
 //             See the License for the specific language governing permissions and
 //             limitations under the License.
 // =============================================================================================
-
-   $use_excerpt = is_archive() || is_search() || (is_home() && get_property('home_template', 'blog') == 'excerpts'); 
-   $navigation_links = get_property("navigation_links", "automatic");
-   
-   $subtitle = null;
 ?>
+<?php $navigation_links = get_property("navigation_links", "automatic"); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class("github-commit")?>>
    <header>
       <?php if( $subtitle ) { echo "<hgroup>\n"; } ?>
@@ -39,13 +35,13 @@
       <?php } ?>
    </header>
    
-   <div class="<?php echo $use_excerpt ? "excerpt" : "content"?> clear">
+   <div class="content clear">
       <?php $content = get_the_content(); $pieces = explode("</pre>", $content, 2); ?>
       <p class="message"><?php echo strip_tags($pieces[1]);?></p>
       <pre><code><?php echo trim(strip_tags($pieces[0]));?></code></pre>
    </div>
    
-   <?php if( is_single() ) { ?>
+   <?php if( is_singular() ) { ?>
    <footer>
       <?php if( $navigation_links != "disabled" ) { ?>
       <nav>
