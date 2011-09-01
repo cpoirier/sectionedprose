@@ -53,13 +53,13 @@
    
    <?php get_special_sidebars( $at = "sidebar1" ); ?>
 
-   <?php if( is_home() && is_active_sidebar('home-sidebar') ) { ?>
+   <?php if( is_front_page() && is_active_sidebar('home-sidebar') ) { ?>
    <ul id="home-sidebar" class="widget-stack body">
    	<?php dynamic_sidebar('home-sidebar'); ?>
    </ul>
    <?php } ?>
 
-   <?php if( !is_singular() && is_active_sidebar('index-sidebar') ) { ?>
+   <?php if( (is_front_page() || !is_singular()) && is_active_sidebar('index-sidebar') ) { ?>
    <ul id="index-sidebar" class="widget-stack body">
    	<?php dynamic_sidebar('index-sidebar'); ?>
    </ul>
@@ -76,6 +76,6 @@
    
 </aside>
 
-<?php if( is_singular() ) { ?>
+<?php if( is_singular() && !is_front_page() ) { ?>
 <script>fadeWorthy.push("#sidebar");</script>
 <?php } ?>

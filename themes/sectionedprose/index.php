@@ -119,27 +119,21 @@
             {
                the_post();
                get_template_part("article"); 
-               if( have_posts() )
-               {
-                  ?><h1>Older entries</h1>
-                  <?php
-               }
             }
    
             if( $index_mode == "titles" || $index_mode == "feature" )
             {
-               echo "<ul class=\"title-list\">\n";
+               echo "<div class=\"title-list\">\n";
                while( have_posts() )
                {
                   the_post();
-                  ?><li><article id="post-<?php the_ID(); ?>"><header>
+                  ?><article id="post-<?php the_ID(); ?>"><header>
                      <?php get_template_part("article-title"); ?>
                      <?php get_template_part("article-metadata"); ?>
                   </header></article>
-                  </li>
                   <?php
                }
-               echo "</ul>\n";
+               echo "</div>\n";
             }
             else
             {

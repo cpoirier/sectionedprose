@@ -136,7 +136,6 @@ ol.inline, ol.inline li
 }
 
 
-
 /* === Sizing ================================================ 
 
        margins:  5px = 0.3125em
@@ -271,7 +270,9 @@ section ul li:before { content: "\00BB \0020"; margin-left: -1em; color: #0095D2
 section p { margin: 0; padding: 0; }
 
 section#content > header { margin: 0 2.5em; }
-
+section#content > footer { margin: 0 2.5em; }
+section#content > footer nav > a { float: left; }
+section#content > footer nav > a + a { float: right; }
 
 article > header > h1 { float: left; margin-top: 0; }
 article > header > nav { float: right; height: 1.5em; /* height is 4px higher without this, for no reason I can find */ } 
@@ -319,10 +320,8 @@ article.literary blockquote p { text-indent: 0; }
 article.literary blockquote * + p { margin-top: 1.5em; }
 
 section.index article { padding-top: 0; padding-bottom: 3em; }
-/*
-section.index article { padding-left: 0; margin-left: 0em; }
-section.index ul { margin-left: 2.5em; }
-*/
+div.title-list article { padding: 0; }
+div.title-list { padding: 1.5em 0 1.5em 2.5em }
 
 
 
