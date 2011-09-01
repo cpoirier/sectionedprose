@@ -22,6 +22,7 @@ require(STYLESHEETPATH . "/functions/initialization.php");
 require(STYLESHEETPATH . "/functions/admin.php"         );   
 require(STYLESHEETPATH . "/functions/theme.php"         );
 require(STYLESHEETPATH . "/functions/properties.php"    );
+require(STYLESHEETPATH . "/functions/github.php"        );
 
 
 function markup( $text, $inline = false )
@@ -60,5 +61,4 @@ function sectionedprose_markdown_widget_title( $title, &$instance, &$id_base )
 {
    return markdown($title);
 }
-
 

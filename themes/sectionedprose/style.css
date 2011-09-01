@@ -73,7 +73,7 @@ article > header h2 { font-size: 1.375em; margin: 0; }
 article > header { margin: 0 0 1.5em 0; }
 article > header:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; .zoom: 1; .display: block; }
 
-article.github-commit > header h1 { font-size: 1.125em; margin: 1.3333em 0; text-decoration: underline; }
+article.github-commit > header h1 { font-size: 1.125em; margin: 1.3333em 0; font-weight: bold; }
 article.github-commit > header { margin-bottom: 0; }
 article.github-commit pre code { background: #FAFAFA; margin-top: 0; }
 

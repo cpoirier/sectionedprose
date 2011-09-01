@@ -20,14 +20,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class("github-commit")?>>
    <header>
       <?php if( $subtitle ) { echo "<hgroup>\n"; } ?>
-      <h1>
-         <?php if( $tags = get_the_tags() ) { ?>
-            <a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a>:
-            committed to <?php foreach($tags as $tag) { echo $tag->name; break; } ?>
-         <?php } else { ?>
-            Commit: <a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a>
-         <?php } ?>
-      </h1>
+      <h1><?php sectionedprose_the_github_commit_title()?></h1>
 
       <?php if( is_singular() ) { ?>
       <nav>
@@ -40,9 +33,7 @@
    </header>
    
    <div class="content clear">
-      <?php $content = get_the_content(); $pieces = explode("</pre>", $content, 2); ?>
-      <p class="message"><?php echo strip_tags($pieces[1]);?></p>
-      <pre><code><?php echo trim(strip_tags($pieces[0]));?></code></pre>
+      <?php the_content(); ?>
    </div>
    
    <?php if( is_singular() ) { ?>

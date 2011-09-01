@@ -39,6 +39,22 @@ function sectionedprose_theme_properties( $settings )
       )
    );
 
+   $fields = sectionedprose_add_global_properties(sectionedprose_add_layout_properties(sectionedprose_add_index_properties($fields, true)));
+
+   $fields['github_commit_title_format'] = array(
+      'id'    => 'github_commit_title_format',
+      'title' => 'GitHub Commit Title Format',
+      'desc'  => "For syndicated github commit messages, the default format (defaults to \"Commit: {commit}\")",
+      'type'  => 'input'
+   );
+
+   $fields['github_tagged_commit_title_format'] = array(
+      'id'    => 'github_tagged_commit_title_format',
+      'title' => 'GitHub Tagged Commit Title Format',
+      'desc'  => "For syndicated github commit messages, the format when tagged with the repository (defaults to \"{repository} updated at {commit}\")",
+      'type'  => 'input'
+   );
+
    $settings[] = array(
       'prefix'        => 'sectionedprose',
       'menu_location' => 'themes.php',

@@ -42,11 +42,11 @@ if( $query->have_posts() )
       while( $query->have_posts() ) 
       { 
          $query->the_post();
-         $raw_excerpt = strip_tags(substr($post->post_content, 0, 200));
-         $words       = explode(" ", $raw_excerpt);
-         $excerpt     = trim(strip_tags(markup(implode(" ", array_slice($words, 0, 10)), true)));
+         // $raw_excerpt = strip_tags(substr($post->post_content, 0, 200));
+         // $words       = explode(" ", $raw_excerpt);
+         // $excerpt     = trim(strip_tags(markup(implode(" ", array_slice($words, 0, 10)), true)));
          
-         ?><li><a href="<?php the_permalink();?>" title="direct link to <?php the_title();?>"><?php the_title();?></a> <?php echo $excerpt;?>&nbsp;.&nbsp;.&nbsp;. </li>
+         ?><li><a href="<?php the_permalink();?>" title="direct link to <?php the_title();?>"><?php the_title();?></a></li>
          <?php
       } 
    ?>

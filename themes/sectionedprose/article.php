@@ -16,7 +16,7 @@
 //             limitations under the License.
 // =============================================================================================
 
-   if( function_exists('is_syndicated') && is_syndicated() && is_numeric(strpos(get_permalink(), "https://github.com")) )
+   if( sectionedprose_in_github_commit_message() )
    {
       get_template_part("github-commit");
       return;
