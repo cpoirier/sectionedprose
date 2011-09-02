@@ -26,12 +26,8 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script src="<?php bloginfo("template_url")?>/javascript/hyphenate.js" async></script>
-<?php if( current_user_can('manage_options') ) { ?>
 <script src="<?php bloginfo("template_url")?>/javascript/faders.js"></script>
 <script src="<?php bloginfo("template_url")?>/javascript/code.js"></script>
-<?php } else { ?>
-<script src="<?php bloginfo("template_url")?>/javascript/all.js"></script>
-<?php } ?>
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
