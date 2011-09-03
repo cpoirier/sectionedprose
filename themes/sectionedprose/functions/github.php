@@ -81,7 +81,10 @@ function sectionedprose_get_github_commit_title()
    {
       foreach( $tags as $tag )
       {
-         $repository = $tag->name;
+         if( is_numeric(strpos($tag->description, "https://github.com")) )
+         {
+            $repository = $tag->name;
+         }
          break;
       }
    }
