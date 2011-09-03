@@ -345,3 +345,8 @@ p + br + br { display: none; }
 p.nocomments { display: none; }
 
 
+
+/* === Other ================================================== */
+
+section.widget_rss > header > h1 > a.rsswidget { display: none; }
+section.widget_rss > header > h1 > a.rsswidget + a { display: inline; }
