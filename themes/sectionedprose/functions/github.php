@@ -68,7 +68,8 @@ function sectionedprose_filter_the_excerpt( $excerpt )
 
 function sectionedprose_in_github_commit_message()
 {
-   return in_the_loop() && is_numeric(strpos(get_permalink(), "https://github.com"));
+   global $post;
+   return in_the_loop() && function_exists('is_syndicated') && is_syndicated() && is_numeric(strpos(get_post_meta($post->ID, 'syndication_feed', true), "https://github.com"));
 }
 
 function sectionedprose_get_github_commit_title()
@@ -90,8 +91,11 @@ function sectionedprose_get_github_commit_title()
 
 function sectionedprose_the_github_commit_title()
 {
+   global $post;
+   $permalink = get_post_meta($post->ID, 'syndication_permalink', true);
+
    ob_start();
-   ?><a href="<?php the_permalink()?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a><?php
+   ?><a href="<?php echo esc_url($permalink)?>" title="<?php the_title_attribute()?>" rel="bookmark"><?php echo get_the_date("Y-m-d H:i")?></a><?php
    $commit = ob_get_clean();
    $repository = "";
 
@@ -100,7 +104,10 @@ function sectionedprose_the_github_commit_title()
       ob_start();
       foreach( $tags as $tag ) 
       { 
-         ?><a href="<?php echo esc_url($tag->description)?>" title="github repository"><?php echo $tag->name;?></a><?php 
+         if( is_numeric(strpos($tag->description, "https://github.com")) )
+         {
+            ?><a href="<?php echo esc_url($tag->description)?>" title="github repository"><?php echo $tag->name;?></a><?php 
+         }
          break; 
       } 
       $repository = ob_get_clean();

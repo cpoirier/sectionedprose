@@ -39,7 +39,7 @@ html, img
 
 code
 {
-  font: normal normal 400 0.8125em/1.5em DejaVuSansMono, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace; 
+  font: normal normal 400 0.8125em/1.8462em DejaVuSansMono, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace; 
   font-weight: bold;
 }
 
@@ -47,8 +47,8 @@ pre code
 {
   font-weight: normal;
   display: block;
-  margin: 1.5em 0;
-  padding: 1.5em;
+  margin: 0;
+  padding: 1.8462em; 
   background: #EEE;
   overflow: auto;
   overflow-y: hidden;
@@ -73,7 +73,7 @@ article > header h2 { font-size: 1.375em; margin: 0; }
 article > header { margin: 0 0 1.5em 0; }
 article > header:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; .zoom: 1; .display: block; }
 
-article.github-commit > header h1 { font-size: 1.125em; margin: 1.3333em 0; font-weight: bold; }
+article.github-commit > header h1 { font-size: 1.125em; margin: 0 0 1.3333em 0; font-weight: bold; }
 article.github-commit > header { margin-bottom: 0; }
 article.github-commit pre code { background: #FAFAFA; margin-top: 0; }
 
