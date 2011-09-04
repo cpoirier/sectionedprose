@@ -348,5 +348,7 @@ p.nocomments { display: none; }
 
 /* === Other ================================================== */
 
+form.nsfw p { text-indent: 0; font-weight: bold; font-style: italics; }
+
 section.widget_rss > header > h1 > a.rsswidget { display: none; }
 section.widget_rss > header > h1 > a.rsswidget + a { display: inline; }

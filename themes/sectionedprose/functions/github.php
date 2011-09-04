@@ -21,8 +21,8 @@
 //
 // Clean up the GitHub commit message formatting, when displayed in_the_loop().
 
-add_filter('the_title_rss', 'sectionedprose_filter_the_title');
-function sectionedprose_filter_the_title( $title )
+add_filter('the_title_rss', 'sectionedprose_filter_github_title');
+function sectionedprose_filter_github_title( $title )
 {
    if( sectionedprose_in_github_commit_message() )
    {
@@ -32,9 +32,9 @@ function sectionedprose_filter_the_title( $title )
    return $title;
 }
 
-add_filter('the_content_rss', 'sectionedprose_filter_the_content', 20000);  // FeedWordPress tries to outsmart us at 10000
-add_filter('the_content'    , 'sectionedprose_filter_the_content', 20000);
-function sectionedprose_filter_the_content( $content )
+add_filter('the_content_rss', 'sectionedprose_filter_github_content', 20000);  // FeedWordPress tries to outsmart us at 10000
+add_filter('the_content'    , 'sectionedprose_filter_github_content', 20000);
+function sectionedprose_filter_github_content( $content )
 {
    if( sectionedprose_in_github_commit_message() )
    {
@@ -50,8 +50,8 @@ function sectionedprose_filter_the_content( $content )
    return $content;
 }
 
-add_filter('the_excerpt_rss', 'sectionedprose_filter_the_excerpt', 20000);
-function sectionedprose_filter_the_excerpt( $excerpt )
+add_filter('the_excerpt_rss', 'sectionedprose_filter_github_excerpt', 20000);
+function sectionedprose_filter_github_excerpt( $excerpt )
 {
    if( sectionedprose_in_github_commit_message() )
    {

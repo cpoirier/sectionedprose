@@ -23,6 +23,7 @@ require(STYLESHEETPATH . "/functions/admin.php"         );
 require(STYLESHEETPATH . "/functions/theme.php"         );
 require(STYLESHEETPATH . "/functions/properties.php"    );
 require(STYLESHEETPATH . "/functions/github.php"        );
+require(STYLESHEETPATH . "/functions/nsfw.php"          );
 
 
 function markup( $text, $inline = false )
