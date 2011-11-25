@@ -298,7 +298,7 @@ article ul
 }
 
 article.literary hr { margin: 1.5em 0 1.4375em 0; border-top: 0.0625em solid white; height: 0; }
-article.literary p { text-align: justify; text-indent: 3em; margin: 0; text-align: justify; }
+article.literary p { text-align: justify; text-indent: 3em; margin: 0; }
 article.literary * + p { margin-top: 0; }
 article.literary ul, 
 article.literary ol 
@@ -331,18 +331,23 @@ article.cover > div { clear: both; border-top: 0.0625em solid #E2DDDE; padding-t
 
 /* === Comments ============================================== */
 
-#comments ul { list-style-type: inherit; }
-#comments ul li:before { display: none; }
+#comments ul, #comments ol { list-style-type: none; }
+#comments ul li:before, #comments ol li:before { display: none; }
 #comments > div { margin-top: 3em; }
 
 #comments .dsq-comment-text p { margin-bottom: 1.5em; }
-ol.commentlist li.comment,
 ol.commentlist li.comment div.comment-body p { margin-top: 1.5em; }
+ol.commentlist li.comment.depth-1 { padding: 1.5em 1em; }
+ol.commentlist li.comment.even.depth-1 { background: #f8f8f8; }
+ol.commentlist li.comment.depth-1 { border: 1px solid #f8f8f8; }
+.comment-meta { float: right; margin-top: -2.3em; font-size: 0.8125em; color: #AAA; }
 
 p + br { display: none; }
 p + br + br { display: none; }
 
 p.nocomments { display: none; }
+
+div.reply { text-align: right; padding-right: 1em; }
 
 
 

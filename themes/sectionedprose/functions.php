@@ -63,3 +63,5 @@ function sectionedprose_markdown_widget_title( $title, &$instance, &$id_base )
    return markdown($title);
 }
 
+
+
