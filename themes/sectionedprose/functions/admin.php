@@ -170,6 +170,7 @@ function sectionedprose_add_layout_properties( $context )
       'options' => array(
          'technical' => 'Technical (spacing between paragraphs, no indent)',
          'literary'  => 'Literary (indented, flowing paragraphs)',
+         'raggedlit' => 'Literary (indented, flowing paragraphs), with left justification'
       )
    );
    

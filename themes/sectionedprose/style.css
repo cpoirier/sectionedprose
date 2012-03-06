@@ -309,6 +309,18 @@ article.literary ol
 article.literary blockquote p { text-indent: 0; }
 article.literary blockquote * + p { margin-top: 1.5em; }
 
+article.raggedlit hr { margin: 1.5em 0 1.4375em 0; border-top: 0.0625em solid white; height: 0; }
+article.raggedlit p { text-align: left; text-indent: 3em; margin: 0; }
+article.raggedlit * + p { margin-top: 0; }
+article.raggedlit ul, 
+article.raggedlit ol 
+{ 
+  margin-left: 4em; 
+}
+
+article.raggedlit blockquote p { text-indent: 0; }
+article.raggedlit blockquote * + p { margin-top: 1.5em; }
+
 section.index article { padding-top: 0; padding-bottom: 3em; }
 div.title-list article { padding: 0; }
 div.title-list { padding: 1.5em 0 1.5em 2.5em }
