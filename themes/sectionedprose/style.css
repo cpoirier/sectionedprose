@@ -29,9 +29,6 @@ Author URI:  http://courage-my-friend.org
 //             limitations under the License.
 // =============================================================================================
 */
-
-@import url("styling/reset.css"); 
-
 html, img
 {
   font: normal normal 400 1em/1.5em Cambria, Georgia, "Times New Roman", Times, serif;
